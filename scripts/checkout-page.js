@@ -49,7 +49,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
 const KLAVIYO_PUBLIC_API_KEY = 'UTWqUe';
 const KLAVIYO_LIST_ID = 'RWAKcM';
-const EMAIL_OVERSIGHT_VALIDATE_URL = 'http://localhost:5020/integration/email-oversight/validate-public';
+const EMAIL_OVERSIGHT_VALIDATE_URL = 'https://app-cms-api-proxy-dev-001.azurewebsites.net/integration/email-oversight/validate-public';
 
 const KOUNT_MERCHANT_ID = 'merchant-id-test';
 const KOUNT_ORG_ID = '1snn5n9w'; // Standard Kount org_id for ThreatMetrix
@@ -265,7 +265,7 @@ function formatDateByConvention(year, month, day) {
 const getShippingProfiles = async () => {
   try {
     const response = await fetch(
-      `http://localhost:5020/vrio/campaigns/${CAMPAIGN_ID}?with=shipping_profiles`,
+      `https://app-cms-api-proxy-dev-001.azurewebsites.net/vrio/campaigns/${CAMPAIGN_ID}?with=shipping_profiles`,
       {
         headers: {
           authorization: `appkey ${INTEGRATION_ID}`
@@ -628,7 +628,7 @@ async function createOrderViaWallet(confirmationToken, paymentMethodId) {
         ?.getAttribute("data-shipping-profile-id") || undefined;
 
   const orderData = {
-    pageId: "tu7GomsO6UQzrAqVOwwIF-KvwVyRFwuXrSsWc5HfrUucpzT9fSePjTZKPmnTW4eF",
+    pageId: "rDel7Y80w68QvSXdlVZoelKUk4KS40S8tYq_VPrhMmnffbB89UkqVSLdZpx2aGb9",
     action: "process",
     campaign_id: CAMPAIGN_ID,
     connection_id: 1,
@@ -810,7 +810,7 @@ async function createOrderViaWallet(confirmationToken, paymentMethodId) {
 
   try {
     const response = await fetch(
-      `http://localhost:5020/vrio/orders`,
+      `https://app-cms-api-proxy-dev-001.azurewebsites.net/vrio/orders`,
       {
         method: "POST",
         headers: {
@@ -1802,7 +1802,7 @@ async function createOrderViaPaypal(isExpress = false) {
   const shippingProfileId = +document.querySelector(`[data-product-id="${selectedProduct.id}"]`)?.getAttribute('data-shipping-profile-id') || undefined;
   const sameAddress = isSameAddress();
   const orderData = {
-    pageId: "tu7GomsO6UQzrAqVOwwIF-KvwVyRFwuXrSsWc5HfrUucpzT9fSePjTZKPmnTW4eF",
+    pageId: "rDel7Y80w68QvSXdlVZoelKUk4KS40S8tYq_VPrhMmnffbB89UkqVSLdZpx2aGb9",
     action: "process",
     campaign_id: CAMPAIGN_ID,
     connection_id: 1, // VRIO URL ending /connection
@@ -2018,7 +2018,7 @@ async function createOrderViaPaypal(isExpress = false) {
         redirectUrl = window.location.href;
       }
       let paymentTokenResponse = await fetch(
-        `http://localhost:5020/vrio/carts/${cartToken}/payment_tokens`,
+        `https://app-cms-api-proxy-dev-001.azurewebsites.net/vrio/carts/${cartToken}/payment_tokens`,
         {
           method: "POST",
           headers: {
@@ -2100,7 +2100,7 @@ async function createOrderViaKlarna() {
   const sameAddress = isSameAddress();
 
   const orderData = {
-    pageId: "tu7GomsO6UQzrAqVOwwIF-KvwVyRFwuXrSsWc5HfrUucpzT9fSePjTZKPmnTW4eF",
+    pageId: "rDel7Y80w68QvSXdlVZoelKUk4KS40S8tYq_VPrhMmnffbB89UkqVSLdZpx2aGb9",
     campaign_id: CAMPAIGN_ID,
     connection_id: 1,
     email: email,
@@ -2319,7 +2319,7 @@ async function createOrderViaKlarna() {
 
   try {
     const createResponse = await fetch(
-      `http://localhost:5020/vrio/orders`,
+      `https://app-cms-api-proxy-dev-001.azurewebsites.net/vrio/orders`,
       {
         method: "POST",
         headers: {
@@ -2478,7 +2478,7 @@ async function createOrderViaCreditCard() {
   let orderTotal = Math.max(0, Number(selectedProduct.price) * selectedProduct.quantity);
 
   const orderData = {
-    pageId: "tu7GomsO6UQzrAqVOwwIF-KvwVyRFwuXrSsWc5HfrUucpzT9fSePjTZKPmnTW4eF",
+    pageId: "rDel7Y80w68QvSXdlVZoelKUk4KS40S8tYq_VPrhMmnffbB89UkqVSLdZpx2aGb9",
     action: "process",
     campaign_id: CAMPAIGN_ID,
     connection_id: 1, // VRIO URL ending /connection
@@ -2699,7 +2699,7 @@ async function createOrderViaCreditCard() {
 
   try {
     const response = await fetch(
-      `http://localhost:5020/vrio/orders`,
+      `https://app-cms-api-proxy-dev-001.azurewebsites.net/vrio/orders`,
       {
         method: "POST",
         headers: {
@@ -2983,7 +2983,7 @@ async function sendLead() {
   } catch (error) {
     console.error("Error validating and sending to Klaviyo", error);
   }
-  await fetch(`http://localhost:5020/vrio/customers`, {
+  await fetch(`https://app-cms-api-proxy-dev-001.azurewebsites.net/vrio/customers`, {
       method: "POST",
       headers: {
         authorization: `appkey ${INTEGRATION_ID}`,
@@ -3298,7 +3298,7 @@ if (typeof validateAndSendToKlaviyo === "function") {
 
   try {
     const response = await fetch(
-      `http://localhost:5020/vrio/orders/${orderId}/complete`,
+      `https://app-cms-api-proxy-dev-001.azurewebsites.net/vrio/orders/${orderId}/complete`,
       {
         method: "POST",
         headers: {
@@ -4381,7 +4381,7 @@ async function returnPaypal() {
     showPreloader(true);
     const paymentToken = sessionStorage.getItem("payment_token_id");
     let responseCustomer = await fetch(
-      `http://localhost:5020/vrio/carts/${cartToken}/payment_tokens/${paymentToken}`, {
+      `https://app-cms-api-proxy-dev-001.azurewebsites.net/vrio/carts/${cartToken}/payment_tokens/${paymentToken}`, {
       headers: {
         authorization: `appkey ${INTEGRATION_ID}`,
         "Content-Type": "application/json",
@@ -4462,7 +4462,7 @@ async function returnPaypal() {
 ;
 
     const body = {
-        pageId: "tu7GomsO6UQzrAqVOwwIF-KvwVyRFwuXrSsWc5HfrUucpzT9fSePjTZKPmnTW4eF",
+        pageId: "rDel7Y80w68QvSXdlVZoelKUk4KS40S8tYq_VPrhMmnffbB89UkqVSLdZpx2aGb9",
         action: "process",
         campaign_id: CAMPAIGN_ID,
         connection_id: 1,
@@ -4564,7 +4564,7 @@ async function returnPaypal() {
 
     try {
       const response = await fetch(
-        "http://localhost:5020/vrio/orders",
+        "https://app-cms-api-proxy-dev-001.azurewebsites.net/vrio/orders",
         {
           method: "POST",
           headers: {
@@ -4721,7 +4721,7 @@ if (checkoutErrorParam) {
 }
 const createCart = async (sanitizedOrderData) => {
     let cartResponse = await fetch(
-    `http://localhost:5020/vrio/carts`,
+    `https://app-cms-api-proxy-dev-001.azurewebsites.net/vrio/carts`,
     {
       method: 'POST',
       headers: {
@@ -4746,7 +4746,7 @@ const flagOrderAsTest = async (orderId) => {
   if (!orderId) return null;
   try {
     const res = await fetch(
-      `http://localhost:5020/vrio/orders/${orderId}`,
+      `https://app-cms-api-proxy-dev-001.azurewebsites.net/vrio/orders/${orderId}`,
       {
         method: "PATCH",
         headers: {
@@ -4788,7 +4788,7 @@ const processAndRedirectToKlarna = async (orderId, redirectUrl) => {
   const finalRedirectUrl = redirectUrl || window.location.href;
 
   const processResponse = await fetch(
-    `http://localhost:5020/vrio/orders/${orderId}/process`,
+    `https://app-cms-api-proxy-dev-001.azurewebsites.net/vrio/orders/${orderId}/process`,
     {
       method: "POST",
       headers: {
