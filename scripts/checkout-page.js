@@ -628,7 +628,7 @@ async function createOrderViaWallet(confirmationToken, paymentMethodId) {
         ?.getAttribute("data-shipping-profile-id") || undefined;
 
   const orderData = {
-    pageId: "XbgoLBo6IYGK-8ZX2U9GkNaCfrfLdAipKbAnQ9CYQwtGXY19MoSo-3nHfVhalQLK",
+    pageId: "YygWAUGQPQ7WJafWUBlk38qdfLmzX_doCLEtPSlbCdbEZSb-BVhbtyWh8TcmUAeu",
     action: "process",
     campaign_id: CAMPAIGN_ID,
     connection_id: 1,
@@ -1802,7 +1802,7 @@ async function createOrderViaPaypal(isExpress = false) {
   const shippingProfileId = +document.querySelector(`[data-product-id="${selectedProduct.id}"]`)?.getAttribute('data-shipping-profile-id') || undefined;
   const sameAddress = isSameAddress();
   const orderData = {
-    pageId: "XbgoLBo6IYGK-8ZX2U9GkNaCfrfLdAipKbAnQ9CYQwtGXY19MoSo-3nHfVhalQLK",
+    pageId: "YygWAUGQPQ7WJafWUBlk38qdfLmzX_doCLEtPSlbCdbEZSb-BVhbtyWh8TcmUAeu",
     action: "process",
     campaign_id: CAMPAIGN_ID,
     connection_id: 1, // VRIO URL ending /connection
@@ -2100,7 +2100,7 @@ async function createOrderViaKlarna() {
   const sameAddress = isSameAddress();
 
   const orderData = {
-    pageId: "XbgoLBo6IYGK-8ZX2U9GkNaCfrfLdAipKbAnQ9CYQwtGXY19MoSo-3nHfVhalQLK",
+    pageId: "YygWAUGQPQ7WJafWUBlk38qdfLmzX_doCLEtPSlbCdbEZSb-BVhbtyWh8TcmUAeu",
     campaign_id: CAMPAIGN_ID,
     connection_id: 1,
     email: email,
@@ -2478,7 +2478,7 @@ async function createOrderViaCreditCard() {
   let orderTotal = Math.max(0, Number(selectedProduct.price) * selectedProduct.quantity);
 
   const orderData = {
-    pageId: "XbgoLBo6IYGK-8ZX2U9GkNaCfrfLdAipKbAnQ9CYQwtGXY19MoSo-3nHfVhalQLK",
+    pageId: "YygWAUGQPQ7WJafWUBlk38qdfLmzX_doCLEtPSlbCdbEZSb-BVhbtyWh8TcmUAeu",
     action: "process",
     campaign_id: CAMPAIGN_ID,
     connection_id: 1, // VRIO URL ending /connection
@@ -3029,7 +3029,7 @@ const getStates = async (countryIso2Code) => {
   const iso2 = String(countryIso2Code || '').toUpperCase();
   try {
     if (!countriesStatesCache) {
-      const res = await fetch('/scripts/countriesData/countriesStates.json', { cache: 'no-store' });
+      const res = await fetch('/69c6626faddb077c85eac15a-preview/scripts/countriesData/countriesStates.json', { cache: 'no-store' });
       const list = await res.json();
       countriesStatesCache = Array.isArray(list) ? list : [];
     }
@@ -4462,7 +4462,7 @@ async function returnPaypal() {
 ;
 
     const body = {
-        pageId: "XbgoLBo6IYGK-8ZX2U9GkNaCfrfLdAipKbAnQ9CYQwtGXY19MoSo-3nHfVhalQLK",
+        pageId: "YygWAUGQPQ7WJafWUBlk38qdfLmzX_doCLEtPSlbCdbEZSb-BVhbtyWh8TcmUAeu",
         action: "process",
         campaign_id: CAMPAIGN_ID,
         connection_id: 1,
